@@ -9,7 +9,7 @@ reset = 0x07
 bus = smbus.SMBus(1)
 
 def lightRead():
-	updatedAddress = bus.read_i2c_block_data(BH1750_sensor, address)
+	updatedAddress = bus.read_i2c_block_data(address, address)
 	value = lightConversion(updatedAddress)
 	return value
 
@@ -22,16 +22,19 @@ while True:
     light_intensity = lightRead()
     print(light_intensity)
     
-    print("Status:")
-    if(light_intensity >= 500):
-        print("Too bright")
-    elif(light_intensity >= 200 and light_intensity < 500):
-        print("Bright")
+    if(light_intensity >= 2000):
+        print("Status: Too bright")
+        print()
+    elif(light_intensity >= 200 and light_intensity < 2000):
+        print("Status: Bright")
+        print()
     elif(light_intensity >= 50 and light_intensity < 200):
-        print("Tedium")
+        print("Status: Medium")
+        print()
     elif(light_intensity > 20 and light_intensity < 50):
-        print("Dark")
-    elif(light_intensity < 20):
-        print("Too dark")
+        print("Status: Dark")
+        print()
+    elif(light_intensity <= 20):
+        print("Status: Too dark")
+        print()
     time.sleep(1)
-
