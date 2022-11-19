@@ -1,3 +1,7 @@
+# Documentation
+# Name : Yohjit Chopra
+# Roll No. 2110994798
+
 import smbus		#important libraries.
 import time
 
